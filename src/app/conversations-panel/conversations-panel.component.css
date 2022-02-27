@@ -1,9 +1,37 @@
+form {
+    margin:20px 0 20px 0;
+    width: 400px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "input logo";
+    column-gap: 10px;
+}
+
+form.example input[type=text] {
+    grid-area: input;
+    padding: 5px;
+    border: 1px solid grey;
+    width: 100%;
+    background: #f1f1f1;
+}
+  
+form.example button {
+    grid-area: logo;
+    width: 70px;
+    padding: 0;
+    margin-right: 10px;
+    background: #2196F3;
+    color: white;
+    border: 1px solid grey;
+    cursor: pointer;
+}
+
 .conversations{
     margin: 0;
     padding: 0;
     list-style-type: none;
     /* width: 15em; */
-    width: 500px;
+    width: 400px;
     height: 500px;
     overflow: hidden;
     overflow-y: scroll;
