@@ -12,7 +12,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   public getAllMessages(): Observable<any> {
-    return this.http.get(`${this.apiServerUrl}/api/messages`);
+    return this.http.get(`${this.apiServerUrl}/api/messages`,{responseType: 'text'});
   }
 
   // public createMessagesByReceiverId(): Observable<any> {
