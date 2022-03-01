@@ -29,5 +29,5 @@ export class UserService {
 
   // public deleteMessage(): Observable<any> {
   //   return this.http.get(`${this.apiServerUrl}/api/messages`);
-  }
+  // }
 }
