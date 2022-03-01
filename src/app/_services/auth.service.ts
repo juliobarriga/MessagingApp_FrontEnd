@@ -11,7 +11,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  public loginUser(userCredentials: UserCredentials): Observable<any> {
-    return this.http.post<UserCredentials>(`${apiServerUrl}/auth/users/login`, userCredentials).pipe(shareReplay());
+  public loginUser(userCredentials: UserCredentials){
+    return this.http.post<string>(`${apiServerUrl}/auth/users/login`, userCredentials);
   }
 }

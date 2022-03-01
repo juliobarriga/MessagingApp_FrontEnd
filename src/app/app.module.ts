@@ -10,7 +10,6 @@ import { AuthenticationRoutingModule } from './authentication/authentication.rou
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { ConversationComponent } from './conversation/conversation.component';
-import { AuthInterceptor } from './_helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -27,7 +26,7 @@ import { AuthInterceptor } from './_helpers/auth.interceptor';
     ReactiveFormsModule,
     AuthenticationRoutingModule
   ],
-  providers: [AuthInterceptor],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

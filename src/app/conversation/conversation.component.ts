@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Message } from '../_models/message';
 import { UserService } from '../_services/user.service';
 
 @Component({
@@ -8,10 +9,21 @@ import { UserService } from '../_services/user.service';
 })
 export class ConversationComponent implements OnInit {
 
+  // messages: Message[] | undefined;
+  messages: any;
+
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    console.log('this is all messages',this.userService.getAllMessages());
+    this.getAllMessages();
+  }
+
+  getAllMessages(): void {
+    this.userService.getAllMessages().subscribe(
+      (response: Message[]) => {
+      this.messages = response;
+      console.log(this.messages);
+    })
   }
 
 }
