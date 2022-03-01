@@ -6,7 +6,6 @@ import { User } from '../_models/user';
 })
 export class TokenStorageService {
 
-
   constructor() { }
 
   logout(): void {
@@ -29,10 +28,24 @@ export class TokenStorageService {
   }
 
   setUserInfo(user: User): any {
+    // window.sessionStorage.setItem('user', JSON.stringify(user));
     window.sessionStorage.setItem('id', JSON.stringify(user.id));
     window.sessionStorage.setItem('phoneNumber', JSON.stringify(user.phoneNumber));
     window.sessionStorage.setItem('userName', JSON.stringify(user.userName));
     window.sessionStorage.setItem('birthDate', JSON.stringify(user.birthDate));
+  }
+
+  getUserInfo(): any {
+    return {
+      'id' : window.sessionStorage.getItem('id'),
+      'phoneNumber' : window.sessionStorage.getItem('phoneNumber'),
+      'userName' : window.sessionStorage.getItem('userName'),
+      'birthDate' : window.sessionStorage.getItem('birthDate')
+    }
+    // window.sessionStorage.getItem('id');
+    // window.sessionStorage.getItem('phoneNumber');
+    // window.sessionStorage.getItem('userName');
+    // window.sessionStorage.getItem('birthDate');
   }
 
 

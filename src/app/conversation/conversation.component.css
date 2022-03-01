@@ -1,1 +1,49 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+.main-container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    grid-template-rows: 80px 1fr 100px;;
+    grid-template-areas: "conversations-panel header"
+        "conversations-panel history"
+        "conversations-panel input";
+    /* overflow: hidden; */
+}
+
+.conversations{
+    grid-area: conversations-panel;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    /* width: 15em; */
+    width: 400px;
+    height: 100vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+
+.conversation-header {
+    display: flex;
+    grid-area: header;
+    margin: 20px;
+    padding: 10px;
+    border: 1px gainsboro solid;
+    align-items: center;
+}
+
+.user-name, .phone-number {
+    padding: 10px;
+}
+
+ 
+
+.conversation-history {
+    grid-area: history;
+}
+
+.conversation-input {
+    grid-area: input;
+    padding: 30px;
+}
