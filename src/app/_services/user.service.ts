@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Message } from '../_models/message';
+import { User } from '../_models/user';
 import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
@@ -13,11 +14,16 @@ export class UserService {
 
   constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
+  public getUserInfo(): Observable<User> {
+    let tokenStr = 'Bearer ' + this.tokenStorageService.getToken();
+    const headers = new HttpHeaders().set('Authorization', tokenStr);
+    return this.http.get<User>(`${this.apiServerUrl}/api/user`,{headers});
+  }
 
   public getAllMessages(): Observable<Message[]> {
     let tokenStr = 'Bearer ' + this.tokenStorageService.getToken();
     const headers = new HttpHeaders().set('Authorization', tokenStr);
-    return this.http.get<Message[]>(`${this.apiServerUrl}/api/messages`,{headers, responseType: 'text' as 'json'});
+    return this.http.get<Message[]>(`${this.apiServerUrl}/api/messages`,{headers});
   }
 
   // public createMessagesByReceiverId(): Observable<any> {

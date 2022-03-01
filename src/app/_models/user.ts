@@ -3,4 +3,5 @@ export class User {
     phoneNumber: string | undefined;
     userName: string | undefined;
     password: string | undefined;
+    birthDate: string | undefined;
 }

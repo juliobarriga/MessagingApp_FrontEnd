@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { AuthService } from 'src/app/_services/auth.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private tokenStorageService: TokenStorageService
+    private tokenStorageService: TokenStorageService,
+    private userService: UserService
   ) { 
     this.form = this.formBuilder.group({
       phoneNumber: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10)]],
@@ -50,6 +52,9 @@ export class LoginComponent implements OnInit {
       this.token = this.tokenObject.jwt;
       this.tokenStorageService.setToken(this.token);
       console.log(this.tokenStorageService.getLoginStatus());
+      this.userService.getUserInfo().subscribe(user => {
+        this.tokenStorageService.setUserInfo(user)
+      });
       this.router.navigateByUrl('/home')
     })
     this.router.navigate(['../login'], { relativeTo: this.route });
