@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime } from 'rxjs';
 import { Message } from '../_models/message';
@@ -18,8 +19,15 @@ export class ConversationComponent implements OnInit {
   mainUser = this.tokenStorageService.getUserInfo();
   users:any[] = [];
   tempMessages: Message[] = [];
+  allUsers:User[] = [];
+  form: FormGroup;
+  isSubmitted = false;
 
-  constructor(private userService: UserService, private tokenStorageService: TokenStorageService, private router: Router, private route:ActivatedRoute) { }
+  constructor(private userService: UserService, private tokenStorageService: TokenStorageService, private router: Router, private route:ActivatedRoute, private fb: FormBuilder) {
+    this.form = this.fb.group({
+      selectedUser : [ '', [ Validators.required]],
+    }) 
+   }
 
   getMessages(id:number):void {
     console.log('calling getMessages function')
@@ -33,7 +41,32 @@ export class ConversationComponent implements OnInit {
     // console.log('tempMessages',this.tempMessages)
   }
 
+  selectUser(): void {
+    console.log(this.form);
+    this.isSubmitted = true;
+    if (!this.form.valid) {
+      false;
+    } else {
+      console.log(JSON.stringify(this.form.value.id));
+    }
+  }
+  
+  get userId(){
+    return this.form.get('id');
+  }
+
+  changeSelectedUser(e: any) {
+    this.userId?.setValue(e.target.value, {
+      onlySelf: true,
+    });
+  }
+
   ngOnInit(): void {
+    if(!this.tokenStorageService.getLoginStatus()){
+      this.router.navigateByUrl('/auth/login')
+      return
+    }
+
     this.userService.getAllMessages().subscribe(
       (response: Message[]) => {
       this.users = response.map((message:any) => {
@@ -65,8 +98,23 @@ export class ConversationComponent implements OnInit {
       },[]);
       console.log(this.users)
     })
+    this.userService.getAllUsers().subscribe(
+      (response: User[]) => {
+        this.allUsers = response;
+        console.log(this.allUsers);
+        let removeIndex = this.allUsers.map(obj => obj.id).indexOf(this.mainUser.id);
+        ~removeIndex && this.allUsers.splice(removeIndex,1);
+        console.log(this.allUsers)
+      }
+    )
     console.log(this.mainUser);
     
+  }
+
+  logout():void {
+    console.log('calling logout')
+    this.tokenStorageService.logout();
+    this.router.navigateByUrl('/auth/login')
   }
   // getSharedMessages(seconUserId:number):any {
   //   this.userService.getSharedMessages(seconUserId).pipe(debounceTime(500)).subscribe(

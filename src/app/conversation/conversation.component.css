@@ -11,6 +11,10 @@
     /* overflow: hidden; */
 }
 
+.control-panel {
+    grid-area: control-panel;
+}
+
 .conversations{
     grid-area: conversations-panel;
     margin: 0;
@@ -75,3 +79,6 @@
     float: left;
     color: #999;
   }
+
+
+  

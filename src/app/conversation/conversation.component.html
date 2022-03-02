@@ -1,18 +1,57 @@
 <!-- <p>conversation component work</p> -->
 <div class="main-container">
-    <div>
-        <div class="list-group conversations">
-            <a *ngFor="let user of users; let i = index" class="list-group-item list-group-item-action flex-column align-items-start" (click)="getMessages(user.id)" routerLink="../chat/{{user.id}}">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{{user.userName}}</h5>
-                <!-- <small>date</small> -->
-                <small>{{user.messages[user.messages.length-1].timestamp}}</small>
-              </div>
-              <!-- <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p> -->
-              <p style="height: 20px; white-space:nowrap;overflow: hidden; text-overflow: ellipsis; " class="mb-1">{{user.messages[user.messages.length-1].message}}</p>
-            </a>
-        </div>
+    <div class="control-panel">
+        <button type="button" class="btn btn-dark" (click)="logout()">Logout</button>
+        <!-- <div>
+
+        </div> -->
+              <form [formGroup]="form" (ngSubmit)="selectUser()">
+                <div class="input-group">
+                  <select
+                    class="custom-select mb-3"
+                    (change)="changeSelectedUser($event)"
+                    formControlName="selectedUser"
+                  >
+                    <option value="">Choose user...</option>
+                    <option *ngFor="let user of allUsers" [ngValue]="user.id">
+                        {{user.userName}}({{user.phoneNumber}})
+                    </option>
+                  </select>
+                  <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary">
+                        Submit
+                    </button>
+                  </div>
+                  
+                  <!-- error block -->
+                  <div class="invalid-feedback" *ngIf="isSubmitted && userId?.invalid">
+                    <sup>*</sup>Please provide city name
+                  </div>
+                  
+                </div>
+              </form>
+        <!-- <div class="input-group form-group">
+            <label for="selectedUser">Send message to:</label>
+            <select class="form-control" id="selectedUser" name="selectedUser" required>
+              <option  *ngFor="let user of allUsers" value="{{user.id}}">{{user.userName}}({{user.phoneNumber}})</option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button">Submit</button>
+            </div>
+        </div> -->
     </div>
+    <div class="list-group conversations">
+        <a *ngFor="let user of users; let i = index" class="list-group-item list-group-item-action flex-column align-items-start" (click)="getMessages(user.id)" routerLink="../chat/{{user.id}}">
+            <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{user.userName}}</h5>
+            <!-- <small>date</small> -->
+            <small>{{user.messages[user.messages.length-1].timestamp}}</small>
+            </div>
+            <!-- <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p> -->
+            <p style="height: 20px; white-space:nowrap;overflow: hidden; text-overflow: ellipsis; " class="mb-1">{{user.messages[user.messages.length-1].message}}</p>
+        </a>
+    </div>
+
     
     <div class="right-container">
         <router-outlet></router-outlet>

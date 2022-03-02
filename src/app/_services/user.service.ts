@@ -26,6 +26,12 @@ export class UserService {
     return this.http.get<Message[]>(`${this.apiServerUrl}/api/messages`,{headers});
   }
 
+  public getAllUsers(): Observable<User[]> {
+    let tokenStr = 'Bearer ' + this.tokenStorageService.getToken();
+    const headers = new HttpHeaders().set('Authorization', tokenStr);
+    return this.http.get<User[]>(`${this.apiServerUrl}/api/users`,{headers});
+  }
+
   public getMessagesByReceiverId(receiverId:number): Observable<Message[]> {
     let tokenStr = 'Bearer ' + this.tokenStorageService.getToken();
     const headers = new HttpHeaders().set('Authorization', tokenStr);
