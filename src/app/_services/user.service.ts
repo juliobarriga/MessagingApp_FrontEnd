@@ -11,6 +11,8 @@ import { TokenStorageService } from './token-storage.service';
 export class UserService {
 
   apiServerUrl = 'https://messagingapp--api.herokuapp.com';
+  conversations:any;
+  tempMessages: any;
 
   constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
@@ -24,6 +26,34 @@ export class UserService {
     let tokenStr = 'Bearer ' + this.tokenStorageService.getToken();
     const headers = new HttpHeaders().set('Authorization', tokenStr);
     return this.http.get<Message[]>(`${this.apiServerUrl}/api/messages`,{headers});
+  }
+
+  public getMessagesByReceiverId(receiverId:number): Observable<Message[]> {
+    let tokenStr = 'Bearer ' + this.tokenStorageService.getToken();
+    const headers = new HttpHeaders().set('Authorization', tokenStr);
+    return this.http.get<Message[]>(`${this.apiServerUrl}/api/messages/sent/${receiverId}`,{headers});
+  }
+
+  public getMessagesBySenderId(senderId:number): Observable<Message[]> {
+    let tokenStr = 'Bearer ' + this.tokenStorageService.getToken();
+    const headers = new HttpHeaders().set('Authorization', tokenStr);
+    return this.http.get<Message[]>(`${this.apiServerUrl}/api/messages/received/${senderId}`,{headers});
+  }
+
+  public setConversations(array:any):void{
+    this.conversations = array;
+  }
+
+  public getConversations():any{
+    return this.conversations;
+  }
+
+  public setMessages(array:any):void{
+    this.tempMessages = array;
+  }
+
+  public getMessages():any{
+    return this.tempMessages;
   }
 
   // public createMessagesByReceiverId(): Observable<any> {

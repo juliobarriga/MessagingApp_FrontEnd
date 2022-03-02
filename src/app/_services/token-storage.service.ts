@@ -37,7 +37,7 @@ export class TokenStorageService {
 
   getUserInfo(): any {
     return {
-      'id' : window.sessionStorage.getItem('id'),
+      'id' : Number(window.sessionStorage.getItem('id')),
       'phoneNumber' : window.sessionStorage.getItem('phoneNumber'),
       'userName' : window.sessionStorage.getItem('userName'),
       'birthDate' : window.sessionStorage.getItem('birthDate')

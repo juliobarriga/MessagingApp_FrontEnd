@@ -27,23 +27,70 @@
 .conversation-header {
     display: flex;
     grid-area: header;
-    margin: 20px;
+    margin: 20px 30px;
     padding: 10px;
     border: 1px gainsboro solid;
     align-items: center;
+    border-radius: 5px;
 }
 
 .user-name, .phone-number {
     padding: 10px;
 }
 
- 
 
 .conversation-history {
     grid-area: history;
+    overflow: hidden;
+    overflow-y: scroll;
+    margin: 0px 30px;
 }
 
 .conversation-input {
     grid-area: input;
     padding: 30px;
 }
+
+/* chat history styling */
+.container {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .darker {
+    border-color: #ccc;
+    background-color: #ddd;
+  }
+  
+  .container::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .container img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+  }
+  
+  .container img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+  }
+  
+  .time-right {
+    float: right;
+    color: #aaa;
+  }
+  
+  .time-left {
+    float: left;
+    color: #999;
+  }
