@@ -11,7 +11,7 @@ const cors = require('cors');
 const app = express();
 app.use(requireHTTPS);
 
-const whitelist = ['http://localhost:3000']; // list of allow domain
+const whitelist = ['https://messaging--app.herokuapp.com/']; // list of allow domain
 
 const corsOptions = {
     origin: function (origin, callback) {
