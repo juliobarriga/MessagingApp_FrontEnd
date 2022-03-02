@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from 'src/app/_models/message';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { UserService } from 'src/app/_services/user.service';
@@ -15,8 +16,13 @@ export class ChatComponent implements OnInit {
   userId:any;
   userUserName:any;
   userPhoneNumber:any;
+  form: FormGroup;
 
-  constructor(private tokenStorageService: TokenStorageService, private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private tokenStorageService: TokenStorageService, private userService: UserService, private route: ActivatedRoute, private formBuilder: FormBuilder,private router: Router) {
+    this.form = this.formBuilder.group({
+      message: ['']
+    });
+   }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -32,6 +38,20 @@ export class ChatComponent implements OnInit {
       )
     })
     
+  }
+
+  sendMessage(): void {
+    console.log('calling sendMessage');
+    console.log(this.form);
+    if (this.form.value.message.length == 0){
+      return;
+    }
+
+    this.userService.createMessageByReceiverId(this.userId,this.form.value).subscribe(data => {
+      console.log(data);
+    })
+    this.form.reset();
+    location.reload();
   }
 
 }

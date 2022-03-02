@@ -44,6 +44,13 @@ export class UserService {
     return this.http.get<Message[]>(`${this.apiServerUrl}/api/messages/shared/${secondUserId}`,{headers});
   }
 
+  public createMessageByReceiverId(receiverId:number, message:any): Observable<Message> {
+    let tokenStr = 'Bearer ' + this.tokenStorageService.getToken();
+    const headers = new HttpHeaders().set('Authorization', tokenStr);
+    console.log("this is the message",message);
+    return this.http.post<any>(`${this.apiServerUrl}/api/messages/${receiverId}`,message,{headers});
+  }
+
   // public createMessagesByReceiverId(): Observable<any> {
   //   return this.http.get(`${this.apiServerUrl}/api/messages`);
   // }

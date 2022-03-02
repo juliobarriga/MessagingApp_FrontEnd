@@ -23,9 +23,9 @@
         </div>
     </div>
     <div class="conversation-input">
-        <form>
+        <form [formGroup]="form" (ngSubmit)="sendMessage()">
             <div class="input-group">
-                <input type="text" class="form-control">
+                <input type="text" formControlName="message" class="form-control">
                 <button class="btn btn-outline-secondary" type="submit">Send</button>
               </div>
         </form>
