@@ -10,6 +10,8 @@ import { AuthenticationRoutingModule } from './authentication/authentication.rou
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { ConversationComponent } from './conversation/conversation.component';
+import { ChatComponent } from './conversation/chat/chat.component';
+import { ConversationRoutingModule } from './conversation/conversation.routing.module';
 
 @NgModule({
   declarations: [
@@ -18,13 +20,15 @@ import { ConversationComponent } from './conversation/conversation.component';
     LoginComponent,
     RegisterComponent,
     ConversationComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AuthenticationRoutingModule
+    AuthenticationRoutingModule,
+    ConversationRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

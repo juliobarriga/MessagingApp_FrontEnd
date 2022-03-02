@@ -1,0 +1,11 @@
+<div class="list-group conversations">
+    <div *ngFor="let message of messageList; let i = index">
+        <div  class="d-flex w-100 justify-content-between list-group-item">
+            <p class="mb-1">{{message.sender.userName}}:</p>
+            <small>Date sent: {{message.message}}</small>
+        </div>
+        <small class="mb-1">Sent:{{message.timestamp}}</small>
+    </div>
+    
+      <!-- <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p> -->
+</div>

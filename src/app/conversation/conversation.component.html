@@ -2,13 +2,14 @@
 <div class="main-container">
     <div>
         <div class="list-group conversations">
-            <a *ngFor="let user of users" href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <a *ngFor="let user of users; let i = index" class="list-group-item list-group-item-action flex-column align-items-start" (click)="getMessages(user.id)" routerLink="../chat/{{user.id}}">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{user.userName}}</h5>
-                <small>Date</small>
+                <!-- <small>date</small> -->
+                <small>{{user.messages[user.messages.length-1].timestamp}}</small>
               </div>
               <!-- <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p> -->
-              <p class="mb-1">{{conversations[0].messages}}</p>
+              <p style="height: 20px; white-space:nowrap;overflow: hidden; text-overflow: ellipsis; " class="mb-1">{{user.messages[user.messages.length-1].message}}</p>
             </a>
         </div>
     </div>
@@ -18,65 +19,8 @@
         <small class="phone-number">1234567890</small>
     </div>
     <div class="conversation-history">
-        <div class="container">
-            <p>User: Hello. How are you today?</p>
-            <span class="time-right">11:00</span>
-          </div>
-          
-          <div class="container darker">
-            <p>Hey! I'm fine. Thanks for asking!</p>
-            <span class="time-left">11:01</span>
-          </div>
-          
-          <div class="container">
-            <p>Sweet! So, what do you wanna do today?</p>
-            <span class="time-right">11:02</span>
-          </div>
-          
-          <div class="container darker">
-            <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
-            <span class="time-left">11:05</span>
-          </div>
-          
-          <div class="container">
-            <p>Hello. How are you today?</p>
-            <span class="time-right">11:00</span>
-          </div>
-          
-          <div class="container darker">
-            <p>Hey! I'm fine. Thanks for asking!</p>
-            <span class="time-left">11:01</span>
-          </div>
-          
-          <div class="container">
-            <p>Sweet! So, what do you wanna do today?</p>
-            <span class="time-right">11:02</span>
-          </div>
-          
-          <div class="container darker">
-            <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
-            <span class="time-left">11:05</span>
-          </div>
-          
-          <div class="container">
-            <p>Hello. How are you today?</p>
-            <span class="time-right">11:00</span>
-          </div>
-          
-          <div class="container darker">
-            <p>Hey! I'm fine. Thanks for asking!</p>
-            <span class="time-left">11:01</span>
-          </div>
-          
-          <div class="container">
-            <p>Sweet! So, what do you wanna do today?</p>
-            <span class="time-right">11:02</span>
-          </div>
-          
-          <div class="container darker">
-            <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
-            <span class="time-left">11:05</span>
-          </div>
+        <!-- <app-chat></app-chat> -->
+        <router-outlet></router-outlet>
     </div>
     <div class="conversation-input">
         <form>

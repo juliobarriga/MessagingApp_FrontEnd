@@ -48,5 +48,13 @@ export class TokenStorageService {
     // window.sessionStorage.getItem('birthDate');
   }
 
+  setReceiverId(id:number):any {
+    window.sessionStorage.setItem('receiverId', JSON.stringify(id));
+  }
+
+  getSecondId(): number {
+    return Number(window.sessionStorage.getItem('receiverId'));
+  }
+
 
 }
