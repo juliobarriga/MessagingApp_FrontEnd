@@ -12,15 +12,21 @@ import { UserService } from 'src/app/_services/user.service';
 export class ChatComponent implements OnInit {
 
   messageList: Message[] = [];
+  userId:any;
+  userUserName:any;
+  userPhoneNumber:any;
 
   constructor(private tokenStorageService: TokenStorageService, private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      const userId = parseInt(params.get('secondId')|| 'error')
-      this.userService.getSharedMessages(userId).subscribe(
+      this.userId = parseInt(params.get('secondId')|| 'error');
+      
+      this.userService.getSharedMessages(this.userId).subscribe(
         (resp: Message[]) => {
           this.messageList = resp;
+          this.userPhoneNumber = this.tokenStorageService.getSecondId().phoneNumber;
+          this.userUserName = this.tokenStorageService.getSecondId().userName;
           console.log(this.messageList);
         }
       )

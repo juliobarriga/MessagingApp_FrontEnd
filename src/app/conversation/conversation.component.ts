@@ -24,13 +24,13 @@ export class ConversationComponent implements OnInit {
   getMessages(id:number):void {
     console.log('calling getMessages function')
     console.log(id);
-    this.tokenStorageService.setReceiverId(id);
-    this.router.navigateByUrl(`/home/chat/${this.tokenStorageService.getSecondId()}`)
+    this.tokenStorageService.setReceiverId(id,this.users.find(i => i.id === id).userName, this.users.find(i => i.id === id).phoneNumber);
+    this.router.navigateByUrl(`/home/chat/${this.tokenStorageService.getSecondId().id}`)
     console.log(this.tokenStorageService.getSecondId())
-    this.tempMessages = this.users.find(i => i.id === id).messages;
-    console.log(this.users)
-    console.log('length of tempMessages',this.tempMessages.length)
-    console.log('tempMessages',this.tempMessages)
+    // this.tempMessages = this.users.find(i => i.id === id).messages;
+    // console.log(this.users)
+    // console.log('length of tempMessages',this.tempMessages.length)
+    // console.log('tempMessages',this.tempMessages)
   }
 
   ngOnInit(): void {

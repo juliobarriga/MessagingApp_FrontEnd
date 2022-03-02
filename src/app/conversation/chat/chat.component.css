@@ -1,1 +1,33 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+.container {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 80px 1fr 100px;;
+    grid-template-areas: "header"
+        "history"
+        "input";
+    /* overflow: hidden; */
+}
+
+.conversation-header {
+    display: flex;
+    grid-area: header;
+    margin: 20px 30px;
+    padding: 10px;
+    border: 1px gainsboro solid;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.conversation-history {
+    grid-area: history;
+    overflow: hidden;
+    overflow-y: scroll;
+    margin: 0px 30px;
+}
+
+.conversation-input {
+    grid-area: input;
+    padding: 30px;
+}

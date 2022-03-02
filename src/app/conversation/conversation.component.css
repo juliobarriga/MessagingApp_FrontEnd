@@ -5,9 +5,9 @@
     display: grid;
     grid-template-columns: 400px 1fr;
     grid-template-rows: 80px 1fr 100px;;
-    grid-template-areas: "conversations-panel header"
-        "conversations-panel history"
-        "conversations-panel input";
+    grid-template-areas: "control-panel right"
+        "conversations-panel right"
+        "conversations-panel right";
     /* overflow: hidden; */
 }
 
@@ -24,31 +24,12 @@
 }
 
 
-.conversation-header {
-    display: flex;
-    grid-area: header;
-    margin: 20px 30px;
-    padding: 10px;
-    border: 1px gainsboro solid;
-    align-items: center;
-    border-radius: 5px;
-}
-
 .user-name, .phone-number {
     padding: 10px;
 }
 
-
-.conversation-history {
-    grid-area: history;
-    overflow: hidden;
-    overflow-y: scroll;
-    margin: 0px 30px;
-}
-
-.conversation-input {
-    grid-area: input;
-    padding: 30px;
+.right-container {
+    grid-area: right;
 }
 
 /* chat history styling */

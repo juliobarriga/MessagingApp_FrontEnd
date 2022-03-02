@@ -1,11 +1,33 @@
-<div class="list-group conversations">
-    <div *ngFor="let message of messageList; let i = index">
-        <div  class="d-flex w-100 justify-content-between list-group-item">
-            <p class="mb-1">{{message.sender.userName}}:</p>
-            <small>Date sent: {{message.message}}</small>
-        </div>
-        <small class="mb-1">Sent:{{message.timestamp}}</small>
+<div class="container">
+    <div class="conversation-header">
+        <h5 class="user-name">{{userUserName}}</h5>
+        <small class="phone-number">Ph#: {{userPhoneNumber}}</small>
     </div>
-    
-      <!-- <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p> -->
+    <div class="list-group conversation-history">
+        <div *ngFor="let message of messageList; let i = index">
+            <div *ngIf="message.sender.id == userId">
+                <div  class="d-flex w-100 justify-content-between list-group-item">
+                    <p class="mb-1">{{message.sender.userName}}==></p>
+                    <small>{{message.message}}</small>
+                </div>
+                <small class="mb-1">Sent:{{message.timestamp}}</small>
+            </div>
+            <div *ngIf="message.sender.id != userId">
+                <div  class="d-flex w-100 justify-content-between list-group-item">
+                    <small>{{message.message}}</small>
+                    <p class="mb-1"><=={{message.sender.userName}}</p>
+                </div>
+                <small class="mb-1">Sent:{{message.timestamp}}</small>
+            </div>
+            
+        </div>
+    </div>
+    <div class="conversation-input">
+        <form>
+            <div class="input-group">
+                <input type="text" class="form-control">
+                <button class="btn btn-outline-secondary" type="submit">Send</button>
+              </div>
+        </form>
+    </div>
 </div>
