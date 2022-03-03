@@ -1,12 +1,12 @@
 # MessagingApp
 
-This is a simple Messaging App, with messages one to one user. The app it's connected to an API(`https://messagingapp--api.herokuapp.com/`), source code can be found here `https://github.com/juliobarriga/MessagingApp_API`.
+This is a simple Messaging App, with messages one to one user. The app it's connected to an API(<https://messagingapp--api.herokuapp.com/>), source code can be found here <https://github.com/juliobarriga/MessagingApp_API>.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.2.
+This project was generated with [Angular CLI]<https://github.com/angular/angular-cli> version 13.2.2.
 
 ## Deployment
 
-This app was deployed in Heroku. Navigate to `https://messaging--app.herokuapp.com/` to open the app. 
+This app was deployed in Heroku. Navigate to <https://messaging--app.herokuapp.com/> to open the app. 
 
 ## User Stories
 
