@@ -68,3 +68,13 @@ This app was deployed in Heroku. Navigate to <https://messaging--app.herokuapp.c
     ├── conversation.component.ts
     └── conversation.routing.module.ts
 ```
+## Areas of improvement (What's next?)
+
+- Improve UI design.
+- Fix create conversation dropdown form list.
+- Improve security.
+- Add contacts book.
+- Add profile pictures.
+- Add ability to send files like pictures.
+- Add icon toindicate if a conversation has unread messages.
+- Add ability to delete a message.
